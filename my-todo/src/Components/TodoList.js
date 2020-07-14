@@ -1,12 +1,12 @@
 import React from 'react';
 import Todo from './Todo'
 
-export default function TodoList(props) {
+const TodoList = props => {
     return (
-      <ol>
-        {props.todos.map((task) => (
-          <Todo key={task.id} todo={task} toggleTask={props.toggleTask} />
-        ))}
-      </ol>
-    );
+      <div>
+        <Todo item={props.state.item} />
+      </div>
+    )
   }
+
+  export default TodoList;

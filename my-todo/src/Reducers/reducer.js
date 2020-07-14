@@ -9,14 +9,11 @@ export const initialState = {
 export const reducer = (state, action) => {
     switch (action.type) {
         case "ADD_TODO":
-            return [
+            return {
                 ...state,
-                {
-                    item: action.payload,
-                    completed: false,
-                    id: Date.now()
-                }
-            ]
+                item: action.payload,
+                id: Date.now()
+            }
         case "TOGGLE_COMPLETED":
             return state.map((item) => {
                 if (item.id === action.payload) {
@@ -29,7 +26,10 @@ export const reducer = (state, action) => {
                 }
             })
         case "CLEAR_COMPLETED":
-            return state.filter((item) => !item.completed)   
+            return{
+                ...state,
+                completed: true
+            }  
         default:
             return state     
     }

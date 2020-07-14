@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from 'react';
 
-export default function NewTodo(props) {
+export default function CurrentTodo(props) {
     return (
         <div>
             <input 

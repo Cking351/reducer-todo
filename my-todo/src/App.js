@@ -1,7 +1,5 @@
 import React, { useState, useReducer } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
 import CurrentTodo from './Components/CurrentTodo'
 import TodoList from './Components/TodoList'
 import { initialState, reducer } from './Reducers/reducer'
@@ -11,7 +9,6 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const changeHandler = event => {
-    event.preventDefault()
     setNewTodo(event.target.value)
   }
 
@@ -34,13 +31,14 @@ function App() {
       <header className="App-header">
         <h1>Todo App</h1>
       </header>
+      <h2>Todo List</h2>
       <CurrentTodo 
         handleChanges={changeHandler}
         newTodo={newTodo}
         submitHandler={submitHandler}
         clearCompleted={clearCompleted}
       />
-      <TodoList todos={state} toggleTask={toggleTask} />
+      <TodoList state={state} toggleTask={toggleTask} />
     </div>
   );
 }
