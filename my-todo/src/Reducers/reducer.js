@@ -1,7 +1,7 @@
 import TodoList from '../Components/TodoList'
 
-export const todo = {
-    item: "Learn how reducers work"
+export const initialState = {
+    item: "Learn how reducers work",
     completed: false,
     id: 3892987589
 }
@@ -9,23 +9,28 @@ export const todo = {
 export const reducer = (state, action) => {
     switch (action.type) {
         case "ADD_TODO":
-            return {
+            return [
                 ...state,
-                {   item: action.payload, 
-                    completed: false, 
-                    id: Date.now() }
+                {
+                    item: action.payload,
+                    completed: false,
+                    id: Date.now()
                 }
-
+            ]
         case "TOGGLE_COMPLETED":
-            return state.map(todo => {
-                if (action.payload === todo.id) {
+            return state.map((item) => {
+                if (item.id === action.payload) {
                     return {
-                        ...todo,
-                        completed: !todo.completed
+                        ...item,
+                        completed: !item.completed
                     }
+                }else {
+                    return item
                 }
-            })    
+            })
+        case "CLEAR_COMPLETED":
+            return state.filter((item) => !item.completed)   
         default:
-            return state
+            return state     
     }
 }
